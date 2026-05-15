@@ -8,7 +8,12 @@ from typing import Dict, Optional
 from urllib.request import Request, urlopen
 
 from bs4.element import Tag
-from cairosvg import svg2png
+try:
+    from cairosvg import svg2png
+    _CAIROSVG_AVAILABLE = True
+except Exception:
+    svg2png = None
+    _CAIROSVG_AVAILABLE = False
 from docx.shared import Pt
 
 from .html_docx_css import _parse_length_to_pt

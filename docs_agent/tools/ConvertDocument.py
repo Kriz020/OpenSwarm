@@ -7,7 +7,12 @@ import html2text
 from agency_swarm.tools import BaseTool, ToolOutputText, tool_output_file_from_path
 from bs4 import BeautifulSoup
 from pydantic import Field
-from weasyprint import HTML
+try:
+    from weasyprint import HTML
+    _WEASYPRINT_AVAILABLE = True
+except Exception:
+    HTML = None
+    _WEASYPRINT_AVAILABLE = False
 
 from .CreateDocument import CreateDocument
 from .utils.html_docx_core import html_to_docx
@@ -169,6 +174,12 @@ Path: {output_path}"""
     
     def _convert_to_pdf(self, html_content: str, output_path: Path):
         """Convert HTML to PDF using weasyprint."""
+        if not _WEASYPRINT_AVAILABLE:
+            raise RuntimeError(
+                "PDF conversion requires WeasyPrint + system libs (libgobject, pango, cairo). "
+                "Install on macOS: brew install gobject-introspection pango cairo. "
+                "Install on Debian/Ubuntu: apt install libpango-1.0-0 libpangoft2-1.0-0."
+            )
         HTML(string=_normalize_unicode(html_content)).write_pdf(output_path)
 
     def _convert_to_docx(self, html_content: str, output_path: Path):
