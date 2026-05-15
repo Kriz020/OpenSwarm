@@ -5,6 +5,7 @@ from openai.types.shared import Reasoning
 from pathlib import Path
 from virtual_assistant.tools.ReadFile import ReadFile
 from shared_tools.CopyFile import CopyFile
+from shared_tools.WebSearch import WebSearch
 
 from config import get_default_model, is_openai_provider
 
@@ -86,7 +87,7 @@ def create_slides_agent() -> Agent:
             LoadFileAttachment,
             CopyFile,
             ReadFile,
-            WebSearchTool(search_context_size="high"),
+            WebSearchTool(search_context_size="high") if is_openai_provider() else WebSearch,
         ],
         model=get_default_model(),
         model_settings=ModelSettings(

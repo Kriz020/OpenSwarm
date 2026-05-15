@@ -8,7 +8,7 @@ from openai.types.shared import Reasoning
 from dotenv import load_dotenv
 
 from config import get_default_model, is_openai_provider
-from shared_tools import CopyFile, ExecuteTool, FindTools, ManageConnections, SearchTools
+from shared_tools import CopyFile, ExecuteTool, FindTools, ManageConnections, SearchTools, WebSearch
 
 load_dotenv()
 
@@ -29,7 +29,7 @@ def create_virtual_assistant() -> Agent:
             response_include=["web_search_call.action.sources"] if is_openai_provider() else None,
         ),
         tools=[
-            WebSearchTool(),
+            WebSearchTool() if is_openai_provider() else WebSearch,
             PersistentShellTool,
             IPythonInterpreter,
             CopyFile,

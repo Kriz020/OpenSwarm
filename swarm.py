@@ -5,13 +5,18 @@ from patches.patch_agency_swarm_dual_comms import apply_dual_comms_patch
 from patches.patch_file_attachment_refs import apply_file_attachment_reference_patch
 from patches.patch_ipython_interpreter_composio import apply_ipython_composio_context_patch
 from patches.patch_utf8_file_reads import apply_utf8_file_read_patch
+from patches.patch_deepseek_reasoning import apply_deepseek_reasoning_patch
 
 load_dotenv()
+
+from usage_tracker import register as _register_usage_tracker
+_register_usage_tracker()
 
 apply_utf8_file_read_patch()
 apply_dual_comms_patch()
 apply_file_attachment_reference_patch()
 apply_ipython_composio_context_patch()
+apply_deepseek_reasoning_patch()
 
 _tracing_key = os.getenv("OPENAI_API_KEY")
 if _tracing_key:

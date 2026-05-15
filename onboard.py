@@ -67,6 +67,12 @@ PROVIDERS = [
         "default_model": "litellm/gemini/gemini-3-flash",
         "url":          "https://aistudio.google.com/app/apikey",
     },
+    {
+        "name":         "DeepSeek",
+        "env_key":      "DEEPSEEK_API_KEY",
+        "default_model": "litellm/deepseek/deepseek-chat",
+        "url":          "https://platform.deepseek.com/api_keys",
+    },
 ]
 
 # ── add-on definitions ────────────────────────────────────────────────────────
