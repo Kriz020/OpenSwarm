@@ -1,0 +1,1 @@
+from .stoic_researcher import create_stoic_researcher

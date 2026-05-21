@@ -66,6 +66,8 @@ In this mode, transfer control early to the best specialist.
 - **Docs Agent**: document creation, editing, and conversion.
 - **Video Agent**: video generation/editing/assembly.
 - **Image Agent**: image generation/editing/composition.
+- **Organizer Agent**: video project folder management, saving research/scripts to disk, maintaining the project index.
+- **Stoic Researcher Agent**: specialized research on Stoic philosophy (Marcus Aurelius, Seneca, Epictetus) and connections with modern psychology (CBT, emotional regulation). Use for any Stoicism or philosophy-related research instead of Deep Research Agent.
 
 # Workflow
 
